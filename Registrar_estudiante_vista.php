@@ -40,34 +40,97 @@
 <!-- content -->
 			<article id="content">
 				<div class="wrap">
-					<section class="cols">
+					<<section class="cols">
 						<div class="box">
-							<div>
-								<h2 class="letter_spacing">Registrar <span>Estudiante</span></h2>
-								<figure><img src="images/page3_img1.jpg" alt="" ></figure>
-								<p class="pad_bot1">¡Registra los estudiantes ahora mismo!</p>
-								<a href="Registrar_estudiante_vista.php" class="button1">¡Registremos!</a>
-							</div>
-						</div>
-					</section>
-					<section class="cols pad_left1">
-						<div class="box">
-							<div>
-								<h2>Registrar <span>Profesor</span></h2> 
-								<figure><img src="images/page3_img2.jpg" alt="" ></figure>
-								<p class="pad_bot1">¡Todo proyecto necesita un tutor, no olvides registrarlo!</p>
-								<a href="#" class="button1">¡Registremos!</a>
-							</div>
-						</div>
-					</section>
-					<section class="cols pad_left1">
-						<div class="box">
-							<div>
-								<h2>Registrar<span>Proyecto</span></h2>
-								<figure><img src="images/page3_img3.jpg" alt="" ></figure>
-								<p class="pad_bot1">Es hora de publicar tus ideas.</p>
-								<a href="#" class="button1">¡Registremos!</a>
-							</div>
+							
+<table>
+		<form method="POST" action= "Registrar_estudiante.php">
+		<TR>
+			<TH COLSPAN="2">Ingrese los datos del estudiante a registrar<br></TH>
+		</TR>
+		<TR>
+			<TD>Codigo</TD><br>
+			<TD><input type="text" name="Codigo" value="" size="9" maxlength="9" required></TD>
+		</TR>
+		<TR>
+		<TR>
+			<TD>Nombre 1 *</TD><br>
+			<TD><input type="text" name="Nombre1" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+			<TD>Nombre 2</TD><br>
+			<TD><input type="text" name="Nombre2" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TD>Apellido 1 *</TD>
+			<TD><input type="text" name="Apellido1" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+			<TD>Apellido 2</TD>
+			<TD><input type="text" name="Apellido2" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TD>Tipo de documento *</TD>
+			<TD><select name="Tipo_documento" required>
+					<option value="CC" checked>
+						Cedula de ciudadania
+					</option>	
+					<option value="TI">
+						Tarjeta de identidad
+					</option>
+				</select>	
+			</TD>
+		</TR>
+		<TR>
+			<TD>Numero de documento *</TD>
+			<TD><input type="text" name="Numero_documento" value="" size="15" maxlength="9" required></TD>
+		</TR>
+		<TR>
+			<TD>Telefono *</TD>
+			<TD><input type="text" name="Telefono1" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+		<TR>
+			<TD>Telefono personal</TD>
+			<TD><input type="text" name="Telefono2" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TD>Direccion de residencia *</TD>
+			<TD><input type="text" name="Direccion1" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+		<TR>
+			<TD>Direccion de trabajo</TD>
+			<TD><input type="text" name="Direccion2" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TD>Email *</TD>
+			<TD><input type="text" name="Email1" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+			<TD>Email 2</TD>
+			<TD><input type="text" name="Email2" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TD>Carrera</TD>
+			<TD><input type="text" name="Carrera" value="" size="20" maxlength="9" required></TD>
+		</TR>
+		<TR>
+			<TD>Semestre</TD>
+			<TD><input type="text" name="Semestre" value="" size="20" maxlength="9"></TD>
+		</TR>
+		<TR>
+			<TH COLSPAN="2">Los valores con "*" son de caracter obligatorio<br></TH>
+		</TR>
+		<TR>
+			<TD align="center"COLSPAN="2"><input type="submit" name="enviar" value="Ingresar"></TD>
+		</TR>
+</TABLE>
+
+
+
+
+
 						</div>
 					</section>
 				</div>
