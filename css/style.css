@@ -99,3 +99,52 @@ footer a:hover {text-decoration:none}
 #ContactForm a {margin-left:20px;float:right}
 #ContactForm .input {width:399px;height:18px;background:#faf3ed;padding:1px 5px;color:#220000;font:14px Georgia, "Times New Roman", Times, serif;margin:0;float:left}
 #ContactForm textarea {overflow:auto;width:789px;height:163px;background:#faf3ed;padding:1px 5px;color:#220000;font:14px Georgia, "Times New Roman", Times, serif;margin:0}
+
+/*Formulario*/
+#formul {
+	text-align: center;  
+    padding: 0px 0px 100px 100px;   /* margen con valores: arriba - derecha - abajo - izquierda */ 
+    font-family:Century Gothic,arial; 
+    font-size:12pt; 
+    vertical-align: center;
+}  
+
+.campos {  
+    font-family:Century Gothic,arial;     /* tipo de letra */  
+    width: 50000px;                 /* anchura de campos de formulario */  
+    font-size:12pt;                /* tamaño de la letra*/   
+    color:#000;                 /* color del texto */   
+    border: 0px dotted red;        /* color del borde puede ser solid ó dotted */   
+       /* color del fondo */   
+}  
+
+.boton{ 
+    font-size:12px; 
+    font-family:Century Gothic; 
+    
+    color:#0000FF; 
+    
+    border:0px; 
+    width:120px; 
+    height:25px; 
+    border: 1px ;
+  border-radius: 3px;
+  color: #555;
+  
+  font: bold 12px/12px Century Gothic, Arial;
+  padding: 8px 11px;
+  text-decoration: none;
+} 
+
+#b_reset {  
+    margin: 0px 0px 0px 0px;    /* margen con valores: arriba - derecha - abajo - izquierda */  
+}  
+
+#b_submit {  
+    margin: -25px 0px 0px 380px;    /* margen con valores: arriba - derecha - abajo - izquierda */  
+} 
+
+#table{
+	width: 500px;
+}
+
