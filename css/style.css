@@ -7,16 +7,16 @@ mark, rp, rt, ruby, summary, time {display:inline}
 .wrapper {width:100%;overflow:hidden}
 .wrap{overflow:hidden;width:965px;margin-left:-5px;padding-left:5px}
 /* Global properties */
-body {background:url(../images/bg_bot.jpg) center 0 repeat #faf3ed;border:0;font:14px Georgia, "Times New Roman", Times, serif;color:#200;line-height:24px}
+body {background:url(../images/img.jpg) center 0 repeat #faf3ed;border:0;font:14px Georgia, "Times New Roman", Times, serif;color:#200;line-height:24px}
 .ic, .ic a {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
 .css3{border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);position:relative}
 /* Global Structure */
 .main {	margin:0 auto;	width:960px}
-.body1 {background:url(../images/bg_top_img.jpg) top center no-repeat}
+.body1 {background:url(../images/bg_top_img.jpg) top center no-repeat; H:9999;}
 .body2 {background:#faf3ed} 
 .body3 {background:url(../images/bg_bot.jpg) top center repeat}
 .body4 {background:url(../images/bg_bot_img.jpg) top center no-repeat}
-.body5 {background:url(../images/slider_shadow.png) center 508px no-repeat}
+.body5 {background:url(../images/bg_top_img.jpg) center 508px no-repeat}
 .body6 {background:url(../images/bg_top.jpg) top repeat-x}
 /* main layout */
 a {color:#a80002;text-decoration:none;outline:none}
@@ -103,16 +103,17 @@ footer a:hover {text-decoration:none}
 /*Formulario*/
 #formul {
 	text-align: center;  
-    padding: 0px 0px 100px 100px;   /* margen con valores: arriba - derecha - abajo - izquierda */ 
+    padding: 0px 10px 100px 100px;   /* margen con valores: arriba - derecha - abajo - izquierda */ 
     font-family:Century Gothic,arial; 
     font-size:12pt; 
     vertical-align: center;
 }  
 
 .campos {  
+
     font-family:Century Gothic,arial;     /* tipo de letra */  
     width: 50000px;                 /* anchura de campos de formulario */  
-    font-size:12pt;                /* tamaño de la letra*/   
+    font-size:20pt;                /* tamaño de la letra*/   
     color:#000;                 /* color del texto */   
     border: 0px dotted red;        /* color del borde puede ser solid ó dotted */   
        /* color del fondo */   
@@ -147,4 +148,31 @@ footer a:hover {text-decoration:none}
 #table{
 	width: 500px;
 }
-
+input, textarea, select {
+  border: 1px solid #DBE1EB;
+  font-size: 15px;
+  font-family: Century Gothic, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: #FFFFFF;
+  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+  color: #2E3133;
+}
+ h3 { 
+  font-size: 20px;
+  line-height: 1.2em;
+  color: #000;
+  font-weight: normal;
+  font-weight: 300;
+  letter-spacing: -2px;
+  margin-bottom: 17px;
+}

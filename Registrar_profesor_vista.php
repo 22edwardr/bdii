@@ -41,7 +41,7 @@
 			<center><table id="formul"></center>
 		<form method="POST" action= "Registrar_estudiante.php">
 		<TR class="campos">
-			<TH COLSPAN="2"><br>Ingrese los datos del estudiante a registrar</TH>
+			<TH COLSPAN="2"><br>Ingrese los datos del profesor a registrar</TH>
 		</TR>
 		<TR>
 			<TD><br><H3>Codigo *</H2></TD>
@@ -78,42 +78,34 @@
 		</TR>
 		<TR>
 			<TD><H3>Numero de documento *<br></TD>
-			<TD><input type="text" name="Numero_documento" value="" size="20" maxlength="15" required></TD>
+			<TD><input type="text" name="Numero_documento" value="" size="20" maxlength="9" required></TD>
 		</TR>
-		<TR>
-			<TD><H3>Telefono *<br></TD>
+		<!--<TR>
+			<TD><H2>Telefono *<br></TD>
 			<TD><input type="text" name="Telefono1" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
 		<TR>
-			<TD><H3>Telefono personal<br></TD>
+			<TD><H2>Telefono personal<br></TD>
 			<TD><input type="text" name="Telefono2" value="" size="20" maxlength="9"></TD>
 		</TR>
 		<TR>
-			<TD><H3>Direccion de residencia *<br></TD>
+			<TD><H2>Direccion de residencia *<br></TD>
 			<TD><input type="text" name="Direccion1" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
 		<TR>
-			<TD><H3>Direccion de trabajo<br></TD>
+			<TD><H2>Direccion de trabajo<br></TD>
 			<TD><input type="text" name="Direccion2" value="" size="20" maxlength="9"></TD>
 		</TR>
 		<TR>
-			<TD><H3>Email *<br></TD>
+			<TD><H2>Email *<br></TD>
 			<TD><input type="text" name="Email1" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
-			<TD><H3>Email 2<br></TD>
+			<TD><H2>Email 2<br></TD>
 			<TD><input type="text" name="Email2" value="" size="20" maxlength="9"></TD>
-		</TR>
-		<TR>
-			<TD><H3>Carrera<br></TD>
-			<TD><input type="text" name="Carrera" value="" size="20" maxlength="9" required></TD>
-		</TR>
-		<TR>
-			<TD><H3>Semestre<br></TD>
-			<TD><input type="text" name="Semestre" value="" size="20" maxlength="9"></TD>
-		</TR>
+		</TR>-->
 		<TR>
 			<TH COLSPAN="2"><H3>Los valores con "*" son de caracter obligatorio<br></TH>
 		</TR>
@@ -200,7 +192,7 @@
 			<footer>
 				<div class="wrapper">
 					<section class="col1 pad_left1">
-						<h3>Contáctanos <span>servicio.cliente@correo.com</span></h3>
+						<h3>Contactanos <span>servicio.cliente@correo.com</span></h3>
 						
 					</section>
 					<section class="col2 pad_left1">
