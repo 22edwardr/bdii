@@ -11,6 +11,9 @@
 <script type="text/javascript" src="js/cufon-replace.js"></script>  
 <script type="text/javascript" src="js/Forum_400.font.js"></script>
 <script type="text/javascript" src="js/atooltip.jquery.js"></script> 
+
+
+
 </head>
 <body id="page3">
 <div class="body6">
@@ -82,38 +85,64 @@
 		</TR>
 		<TR>
 			<TD><H3>Telefono *<br></TD>
-			<TD><input type="text" name="Telefono1" value="" size="20" maxlength="9" required></TD>
+			<TD><input type="text" name="tel0" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
-		<TR>
-			<TD><H3>Telefono personal<br></TD>
-			<TD><input type="text" name="Telefono2" value="" size="20" maxlength="9"></TD>
-		</TR>
+		
+
+
+
 		<TR>
 			<TD><H3>Direccion de residencia *<br></TD>
-			<TD><input type="text" name="Direccion1" value="" size="20" maxlength="9" required></TD>
+			<TD><input type="text" name="dir0" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
-		<TR>
-			<TD><H3>Direccion de trabajo<br></TD>
-			<TD><input type="text" name="Direccion2" value="" size="20" maxlength="9"></TD>
-		</TR>
+		
+
+
+
+
 		<TR>
 			<TD><H3>Email *<br></TD>
-			<TD><input type="text" name="Email1" value="" size="20" maxlength="9" required></TD>
+			<TD><input type="text" name="mail0" value="" size="20" maxlength="9" required></TD>
 		</TR>
-		<TR>
-			<TD><H3>Email 2<br></TD>
-			<TD><input type="text" name="Email2" value="" size="20" maxlength="9"></TD>
-		</TR>
-		<TR>
-			<TD><H3>Carrera<br></TD>
-			<TD><input type="text" name="Carrera" value="" size="20" maxlength="9" required></TD>
-		</TR>
+<!--
+
+		<tr id="emailNode">
+<td colspan="2"><CENTER id="mailManagment"><A HREF="javascript:newMail();">Agregar otro mail</A>&nbsp;</CENTER></td></tr>
+
+-->
+
 		<TR>
 			<TD><H3>Semestre<br></TD>
-			<TD><input type="text" name="Semestre" value="" size="20" maxlength="9"></TD>
+			<TD><input type="text" name="Semestre" value="" size="20" maxlength="9" required></TD>
 		</TR>
+
+
+
+		<TR>
+			<TD><H3>Semestre *<br></TD>
+			<TD><select name="Carrera" required>
+			<?php	
+				include 'bd.php';
+				$conexion= new bd;
+				$sql="SELECT * FROM programa";
+				$result=$conexion->comandosql($sql);
+				while($row = mysql_fetch_row($result)){
+					?><option value="<?php echo $row[0]; ?>">
+						<?php echo $row[1]; ?>
+					</option>
+				<?php 
+					}
+				?>
+				</select>	
+			</TD>
+		</TR>
+
+
+
+
+
 		<TR>
 			<TH COLSPAN="2"><H3>Los valores con "*" son de caracter obligatorio<br></TH>
 		</TR>

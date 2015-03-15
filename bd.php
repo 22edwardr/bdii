@@ -18,6 +18,9 @@ class bd{
 
 	public function comandosql($string){
 		$result=mysql_query($string,$this->conectar());
+		if (!$result){
+			die('ERROR CONEXION CON BD: '.mysql_error());
+		}
 		return $result;
 	}
 	public function desconectar(){

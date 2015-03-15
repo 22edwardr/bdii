@@ -12,20 +12,17 @@
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla estudiante
+-- Estructura de tabla para la tabla persona
 --
 
-CREATE TABLE IF NOT EXISTS estudiante (
-  Codigo varchar(9) NOT NULL,
+CREATE TABLE IF NOT EXISTS persona (
   Nombre1 varchar(20) NOT NULL,
   Nombre2 varchar(20) ,
   Apellido1 varchar(20)  NOT NULL,
   Apellido2 varchar(20),
   Tipo_documento varchar(2)  NOT NULL,
   Numero_documento varchar(15)  NOT NULL,
-  Carrera varchar(20)  NOT NULL,
-  Semestre varchar(1)  NOT NULL,
-  PRIMARY KEY (Codigo)
+  PRIMARY KEY (Numero_documento)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -38,10 +35,9 @@ CREATE TABLE IF NOT EXISTS estudiante (
 --
 
 CREATE TABLE IF NOT EXISTS telefono (
-  Codigo varchar(9) NOT NULL,
-  Telefono1 varchar(10)  NOT NULL,
-  Telefono2 varchar(10),
-  PRIMARY KEY (Codigo,Telefono1)
+  Codigo varchar(15) NOT NULL,
+  Telefono varchar(10)  NOT NULL,
+  PRIMARY KEY (Codigo,Telefono)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
@@ -55,10 +51,9 @@ CREATE TABLE IF NOT EXISTS telefono (
 --
 
 CREATE TABLE IF NOT EXISTS email (
-  Codigo varchar(9)  NOT NULL,
-  Email1 varchar(10)  NOT NULL,
-  Email2 varchar(10),
-  PRIMARY KEY (Codigo,Email1)
+  Codigo varchar(15)  NOT NULL,
+  Email varchar(10)  NOT NULL,
+  PRIMARY KEY (Codigo,Email)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -71,10 +66,9 @@ CREATE TABLE IF NOT EXISTS email (
 --
 
 CREATE TABLE IF NOT EXISTS direccion (
-  Codigo varchar(9)  NOT NULL,
-  Direccion1 varchar(10)  NOT NULL,
-  Direccion2 varchar(10),
-  PRIMARY KEY (Codigo,Direccion1)
+  Codigo varchar(15)  NOT NULL,
+  Direccion varchar(10)  NOT NULL,
+  PRIMARY KEY (Codigo,Direccion)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
@@ -86,7 +80,7 @@ CREATE TABLE IF NOT EXISTS direccion (
 
 CREATE TABLE IF NOT EXISTS programa(
 	Codigo varchar (3) NOT NULL,
-	Nombre varchar (15) NOT NULL,
+	Nombre varchar () NOT NULL,
 	PRIMARY KEY (Codigo)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -102,8 +96,9 @@ CREATE TABLE IF NOT EXISTS proyecto(
 	Fecha date NOT NULL,
 	Titulo varchar (15) NOT NULL,
 	Descripcion varchar (45) NOT NULL,
-	Cod_Director varchar (9) NOT NULL,
+	Cod_director varchar (15) NOT NULL,
 	Cod_programa varchar (3) NOT NULL,
+  Estado varchar (10) NOT NULL,
 	PRIMARY KEY (Codigo)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -116,15 +111,12 @@ CREATE TABLE IF NOT EXISTS proyecto(
 -- Estructura de tabla para la tabla profesor
 --
 
-CREATE TABLE profesor(
-	Codigo varchar(9) NOT NULL,
-	Nombre1 varchar(20) NOT NULL,
-  	Nombre2 varchar(20) ,
-  	Apellido1 varchar(20)  NOT NULL,
-  	Apellido2 varchar(20),
-	Tipo_documento varchar(2)  NOT NULL,
-  	Numero_documento varchar(15)  NOT NULL,
-	PRIMARY KEY (Codigo)
+CREATE TABLE IF NOT EXISTS profesor(
+  Numero_documento varchar(15)  NOT NULL,
+  Codigo_linea varchar(9),
+  Codigo varchar(9) NOT NULL,
+  Tipo varchar(10) NOT NULL,
+	PRIMARY KEY (Numero_documento)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
@@ -134,41 +126,18 @@ CREATE TABLE profesor(
 
 -- --------------------------------------------------------
 --
--- Estructura de tabla para la tabla director
+-- Estructura de tabla para la tabla estudiante
 --
-
-CREATE TABLE director (
-	Codigo varchar (9) NOT NULL,
-	PRIMARY KEY (Codigo)
+CREATE TABLE IF NOT EXISTS estudiante(
+  Codigo varchar(9) NOT NULL,
+  Carrera varchar(20)  NOT NULL,
+  Semestre varchar(1)  NOT NULL,
+  Numero_documento varchar(15)  NOT NULL,
+  PRIMARY KEY (Numero_documento)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
-
--- --------------------------------------------------------
---
--- Estructura de tabla para la tabla jurado
---
-
-CREATE TABLE jurado (
-	Codigo varchar (9) NOT NULL,
-	PRIMARY KEY (Codigo)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
--- --------------------------------------------------------
-
-
--- --------------------------------------------------------
---
--- Estructura de tabla para la tabla jurado_proyecto
---
-
-
-CREATE TABLE jurado_proyecto (
-	Codigo_jurado varchar (9) NOT NULL,
-	Codigo_proyecto varchar (9) NOT NULL,
-	PRIMARY KEY (Codigo_jurado,Codigo_proyecto)
-)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -178,7 +147,7 @@ CREATE TABLE jurado_proyecto (
 -- Estructura de tabla para la tabla linea
 --
 
-CREATE TABLE linea (
+CREATE TABLE IF NOT EXISTS linea (
 	Codigo varchar (9) NOT NULL,
 	Nombre varchar (15) NOT NULL,
 	Descripcion varchar (45),
@@ -193,7 +162,7 @@ CREATE TABLE linea (
 -- Estructura de tabla para la tabla linea_proyecto
 --
 
-CREATE TABLE linea_proyecto (
+CREATE TABLE IF NOT EXISTS linea_proyecto (
 	Codigo_linea varchar (9) NOT NULL,
 	Codigo_proyecto varchar (9) NOT NULL,
 	PRIMARY KEY (Codigo_linea,Codigo_proyecto)
@@ -203,42 +172,63 @@ CREATE TABLE linea_proyecto (
 
 -- --------------------------------------------------------
 --
--- Tablas n a n para jurado_proyecto y linea_proyecto
+-- Estructura de tabla para la tabla jurado
 --
 
-ALTER TABLE jurado_proyecto ADD CONSTRAINT ntonjurado_proyecto FOREIGN KEY (Codigo_jurado) REFERENCES jurado (Codigo);
-ALTER TABLE jurado_proyecto ADD CONSTRAINT ntonproyecto_jurado FOREIGN KEY (Codigo_proyecto) REFERENCES proyecto (Codigo);
+CREATE TABLE IF NOT EXISTS jurado (
+  Codigo_profesor varchar (15) NOT NULL,
+  Codigo_proyecto varchar (9) NOT NULL,
+  PRIMARY KEY (Codigo_profesor,Codigo_proyecto)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+-- --------------------------------------------------------
 
-ALTER TABLE linea_proyecto ADD CONSTRAINT ntonlinea_proyecto FOREIGN KEY (Codigo_linea) REFERENCES linea (Codigo);
-ALTER TABLE linea_proyecto ADD CONSTRAINT ntonproyecto_linea FOREIGN KEY (Codigo_proyecto) REFERENCES proyecto (Codigo);
+-- --------------------------------------------------------
+--
+-- Tablas n a n para linea_proyecto
+--
+
+
+
+
+ALTER TABLE jurado ADD CONSTRAINT ntonjurado_prof FOREIGN KEY (Codigo_profesor) REFERENCES profesor (Numero_documento);
+ALTER TABLE jurado ADD CONSTRAINT ntonjurado_proy FOREIGN KEY (Codigo_proyecto) REFERENCES proyecto (Codigo);
 
 
 -- --------------------------------------------------------
 
 --
--- Foraneas de padre de director y jurado a profesor
+-- Foraneas de padre de profesor y estudiante a persona
 --
 
-ALTER TABLE director ADD CONSTRAINT pt_director FOREIGN KEY (Codigo) REFERENCES profesor (Codigo);
-ALTER TABLE jurado ADD CONSTRAINT pt_jurado FOREIGN KEY (Codigo) REFERENCES profesor (Codigo);
+ALTER TABLE profesor ADD CONSTRAINT pt_profesor FOREIGN KEY (Numero_documento) REFERENCES persona (Numero_documento);
+ALTER TABLE estudiante ADD CONSTRAINT pt_estudiante FOREIGN KEY (Numero_documento) REFERENCES persona (Numero_documento);
 
 -- --------------------------------------------------------
 
 --
--- Foraneas a programa y director del proyecto
+-- Foraneas a programa y foranea de director a proyecto
 --
 
-ALTER TABLE proyecto ADD CONSTRAINT fk_programa FOREIGN KEY (Cod_programa) REFERENCES proyecto(Codigo);
-ALTER TABLE proyecto ADD CONSTRAINT fk_director FOREIGN KEY (Cod_Director) REFERENCES director(Codigo);
+ALTER TABLE proyecto ADD CONSTRAINT fk_programa FOREIGN KEY (Cod_programa) REFERENCES programa(Codigo);
+ALTER TABLE proyecto ADD CONSTRAINT fk_director FOREIGN KEY (Cod_director) REFERENCES profesor(Numero_documento);
+
+-- --------------------------------------------------------
 
 -- --------------------------------------------------------
 
 --
--- Foraneas para los campos multivaluados en estudiante
+-- Foraneas a linea de profesor
 --
 
- ALTER TABLE telefono ADD CONSTRAINT fk_tel FOREIGN KEY (Codigo) REFERENCES estudiante(Codigo);
-  ALTER TABLE email ADD CONSTRAINT fk_email  FOREIGN KEY (Codigo) REFERENCES estudiante(Codigo);
-  ALTER TABLE direccion ADD CONSTRAINT fk_direccion    FOREIGN KEY (Codigo) REFERENCES estudiante(Codigo);
+ALTER TABLE profesor ADD CONSTRAINT fk_linea FOREIGN KEY (Codigo_linea) REFERENCES linea(Codigo);
+
+-- --------------------------------------------------------
+--
+-- Foraneas para los campos multivaluados en persona
+--
+
+ ALTER TABLE telefono ADD CONSTRAINT fk_tel FOREIGN KEY (Codigo) REFERENCES persona(Numero_documento);
+  ALTER TABLE email ADD CONSTRAINT fk_email  FOREIGN KEY (Codigo) REFERENCES persona(Numero_documento);
+  ALTER TABLE direccion ADD CONSTRAINT fk_direccion    FOREIGN KEY (Codigo) REFERENCES persona(Numero_documento);
 
 
