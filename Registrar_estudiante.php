@@ -12,14 +12,14 @@ $Telefononuevo='tel0';
 $i=0;
 do{
 	$Telefonos[$i]=$_POST[$Telefononuevo];
-	echo $Telefonos[0];
+	echo $Telefonos[$i];
 	$partes= explode ("l",$Telefononuevo);
 	$partes[1]++;
 	$Telefononuevo="tel".$partes[1];
 	$i++;
+	echo $Telefononuevo;
 }while(isset($_POST[$Telefononuevo]));
-
-
+$telefonos_a_registrar=$i-1;
 
 
 
@@ -33,7 +33,7 @@ do{
 	$Direccionnuevo="dir".$partes[1];
 	$i++;
 }while(isset($_POST[$Direccionnuevo]));
-
+$direcciones_a_registrar=$i-1;
 
 
 
@@ -47,6 +47,8 @@ do{
 	$Emailnuevo="mail".$partes[1];
 	$i++;
 }while(isset($_POST[$Emailnuevo]));
+$emails_a_registrar=$i-1;
+
 
 $Carrera=$_POST['Carrera'];
 $Semestre=$_POST['Semestre'];
@@ -60,16 +62,20 @@ $result=$conexion->comandosql($sql);
 $sql="INSERT INTO estudiante(Codigo,Numero_documento,Carrera,Semestre) VALUES('$Codigo','$Numero_documento','$Carrera','$Semestre')";
 $result=$conexion->comandosql($sql);
 
-
-$sql="INSERT INTO telefono(Codigo,Telefono) VALUES('$Codigo','$Telefonos[0]')";
+for($i=0;$i<=$telefonos_a_registrar;$i++){
+$sql="INSERT INTO telefono(Codigo,Telefono) VALUES('$Codigo','$Telefonos[$i]')";
 $result=$conexion->comandosql($sql);
-
-
-$sql="INSERT INTO direccion(Codigo,Direccion) VALUES('$Codigo','$Direcciones[0]')";
+}
+for($i=0;$i<=$direcciones_a_registrar;$i++){
+$sql="INSERT INTO direccion(Codigo,Direccion) VALUES('$Codigo','$Direcciones[$i]')";
 $result=$conexion->comandosql($sql);
+}
 
-$sql="INSERT INTO email(Codigo,Email) VALUES('$Codigo','$Emails[0]')";
+for($i=0;$i<=$emails_a_registrar;$i++){
+$sql="INSERT INTO email(Codigo,Email) VALUES('$Codigo','$Emails[$i]')";
 $result=$conexion->comandosql($sql);
+}
+
 echo "Termine";
 $conexion->desconectar();
 //header ("Location: Registrar.html");*/
