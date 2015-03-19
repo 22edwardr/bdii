@@ -11,6 +11,39 @@
 <script type="text/javascript" src="js/cufon-replace.js"></script>  
 <script type="text/javascript" src="js/Forum_400.font.js"></script>
 <script type="text/javascript" src="js/atooltip.jquery.js"></script> 
+	
+<script>
+	jQuery.fn.generaNuevosCampos = function(etiqueta, nombreCampo, indice){
+		$(this).each(function(){
+			elem = $(this);
+			elem.data("etiqueta",etiqueta);
+			elem.data("nombreCampo",nombreCampo);
+			elem.data("indice",indice);
+			
+			elem.click(function(e){
+				e.preventDefault();
+				elem = $(this);
+				etiqueta = elem.data("etiqueta");
+				nombreCampo = elem.data("nombreCampo");
+				indice = elem.data("indice");
+				texto_insertar = '<tr><td>' + etiqueta + ' ' + indice + ':<br></td><td><input type="text" name="' + nombreCampo + indice + '" </td></tr>';
+				indice ++;
+				elem.data("indice",indice);
+				nuevo_campo = $(texto_insertar);
+				elem.before(nuevo_campo);
+			});
+		});
+		return this;
+	}
+	$(document).ready(function(){
+		$("#mastel").generaNuevosCampos("Telefono", "tel", 1);
+		$("#masdir").generaNuevosCampos("Direccion", "dir", 1);
+		$("#masmail").generaNuevosCampos("Email", "mail", 1);
+		});
+	</script>
+</head>
+
+
 </head>
 <body id="page3">
 <div class="body6">
@@ -37,35 +70,36 @@
 					</ul>
 				</nav>
 			</header>
+			<form method="POST" action= "Registrar_profesor.php">
 			<div id="campos">
 			<center><table id="formul"></center>
-		<form method="POST" action= "Registrar_estudiante.php">
+			<tbody>
 		<TR class="campos">
 			<TH COLSPAN="2"><br>Ingrese los datos del profesor a registrar</TH>
 		</TR>
 		<TR>
-			<TD><br><H3>Codigo *</H2></TD>
+			<TD><br>Codigo *</H2></TD>
 			<TD><br><input type="text" name="Codigo" value="" size="20" maxlength="9" required></TD>
 		</TR>
 		<TR>
 		<TR>
-			<TD><H3>Nombre 1 *<br></TD><br>
-			<TD><input type="text" name="Nombre1" value="" size="20" maxlength="9" required></TD>
+			<TD>Nombre 1 *<br></TD><br>
+			<TD><input type="text" name="Nombre1" value="" size="20" maxlength="20" required></TD>
 		</TR>
 		<TR>
-			<TD><H3>Nombre 2<br></TD><br>
-			<TD><input type="text" name="Nombre2" value="" size="20" maxlength="9"></TD>
+			<TD>Nombre 2<br></TD><br>
+			<TD><input type="text" name="Nombre2" value="" size="20" maxlength="20"></TD>
 		</TR>
 		<TR>
-			<TD><H3>Apellido 1 *<br></TD>
-			<TD><input type="text" name="Apellido1" value="" size="20" maxlength="9" required></TD>
+			<TD>Apellido 1 *<br></TD>
+			<TD><input type="text" name="Apellido1" value="" size="20" maxlength="20" required></TD>
 		</TR>
 		<TR>
-			<TD><H3>Apellido 2<br></TD>
-			<TD><input type="text" name="Apellido2" value="" size="20" maxlength="9"></TD>
+			<TD>Apellido 2<br></TD>
+			<TD><input type="text" name="Apellido2" value="" size="20" maxlength="20"></TD>
 		</TR>
 		<TR>
-			<TD><H3>Tipo de documento *<br></TD>
+			<TD>Tipo de documento *<br></TD>
 			<TD><select name="Tipo_documento" required>
 					<option value="CC" checked>
 						Cedula de ciudadania
@@ -77,42 +111,86 @@
 			</TD>
 		</TR>
 		<TR>
-			<TD><H3>Numero de documento *<br></TD>
-			<TD><input type="text" name="Numero_documento" value="" size="20" maxlength="9" required></TD>
-		</TR>
-		<!--<TR>
-			<TD><H2>Telefono *<br></TD>
-			<TD><input type="text" name="Telefono1" value="" size="20" maxlength="9" required></TD>
+			<TD>Numero de documento *<br></TD>
+			<TD><input type="text" name="Numero_documento" value="" size="20" maxlength="15" required></TD>
 		</TR>
 		<TR>
-		<TR>
-			<TD><H2>Telefono personal<br></TD>
-			<TD><input type="text" name="Telefono2" value="" size="20" maxlength="9"></TD>
+			<TD>Telefono *<br></TD>
+			<TD><input type="text" name="tel0" value="" size="20" maxlength="10" required></TD>
 		</TR>
 		<TR>
-			<TD><H2>Direccion de residencia *<br></TD>
-			<TD><input type="text" name="Direccion1" value="" size="20" maxlength="9" required></TD>
+			<TD><a href="#" id="mastel">Mas telefonos</a><br></TD>
+		</TR>
+
+
+
+		<TR>
+			<TD>Direccion de residencia *<br></TD>
+			<TD><input type="text" name="dir0" value="" size="20" maxlength="10" required></TD>
+		</TR>
+
+		<TR>
+			<TD><a href="#" id="masdir">Mas Direcciones</a><br></TD>
+		</TR>
+
+		<TR>
+			<TD>Email *<br></TD>
+			<TD><input type="text" name="mail0" value="" size="20" maxlength="10" required></TD>
 		</TR>
 		<TR>
-		<TR>
-			<TD><H2>Direccion de trabajo<br></TD>
-			<TD><input type="text" name="Direccion2" value="" size="20" maxlength="9"></TD>
+			<TD><a href="#" id="masmail">Mas Emails</a><br></TD>
 		</TR>
+
 		<TR>
-			<TD><H2>Email *<br></TD>
-			<TD><input type="text" name="Email1" value="" size="20" maxlength="9" required></TD>
+			<TD>Tipo<br></TD>
+			<TD><select name="Tipo" required>
+					<option value="Jurado" selected>
+						Jurado
+					</option>
+					<option value="Director">
+						Director
+					</option>
+					<option value="Ambas">
+						Ambas
+					</option>
+				</select>
+			</TD>
 		</TR>
+
+
+
 		<TR>
-			<TD><H2>Email 2<br></TD>
-			<TD><input type="text" name="Email2" value="" size="20" maxlength="9"></TD>
-		</TR>-->
+			<TD>Linea *<br></TD>
+			<TD><select name="Linea" required>
+			<?php	
+				include 'bd.php';
+				$conexion= new bd;
+				$sql="SELECT * FROM linea";
+				$result=$conexion->comandosql($sql);
+				while($row = mysql_fetch_row($result)){
+					?><option value="<?php echo $row[0]; ?>">
+						<?php echo $row[1]; ?>
+					</option>
+				<?php 
+					}
+				?>
+				</select>	
+			</TD>
+		</TR>
+
+
+
+
+
 		<TR>
-			<TH COLSPAN="2"><H3>Los valores con "*" son de caracter obligatorio<br></TH>
+			<TH COLSPAN="2">Los valores con "*" son de caracter obligatorio<br></TH>
 		</TR>
 		<TR class="boton">
 			<TD  align="center"COLSPAN="2"><br><input type="submit" name="enviar" value="Ingresar"><br></TD>
 		</TR>
+	</body>
 </TABLE>
+</form>
 </div>
 <!-- / header -->
 <!-- content -->
@@ -192,11 +270,11 @@
 			<footer>
 				<div class="wrapper">
 					<section class="col1 pad_left1">
-						<h3>Contactanos <span>servicio.cliente@correo.com</span></h3>
+						Contáctanos <span>servicio.cliente@correo.com</span></h3>
 						
 					</section>
 					<section class="col2 pad_left1">
-						<h3>Siguenos</h3>
+						Siguenos</h3>
 						<ul id="icons">
 							<li><a href="#" class="normaltip" title="Facebook"><img src="images/icon1.gif" alt=""></a></li>
 							<li><a href="#" class="normaltip" title="Linkedin"><img src="images/icon2.gif" alt=""></a></li>

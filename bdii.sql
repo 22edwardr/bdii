@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS direccion (
 
 CREATE TABLE IF NOT EXISTS programa(
 	Codigo varchar (3) NOT NULL,
-	Nombre varchar () NOT NULL,
+	Nombre varchar (15) NOT NULL,
 	PRIMARY KEY (Codigo)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS programa(
 CREATE TABLE IF NOT EXISTS proyecto(
 	Codigo varchar (9) NOT NULL,
 	Fecha date NOT NULL,
-	Titulo varchar (15) NOT NULL,
+	Titulo varchar (20) NOT NULL,
 	Descripcion varchar (45) NOT NULL,
 	Cod_director varchar (15) NOT NULL,
 	Cod_programa varchar (3) NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS proyecto(
 
 CREATE TABLE IF NOT EXISTS profesor(
   Numero_documento varchar(15)  NOT NULL,
-  Codigo_linea varchar(9),
+  Cod_linea varchar(9),
   Codigo varchar(9) NOT NULL,
   Tipo varchar(10) NOT NULL,
 	PRIMARY KEY (Numero_documento)
@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS estudiante(
   Carrera varchar(20)  NOT NULL,
   Semestre varchar(1)  NOT NULL,
   Numero_documento varchar(15)  NOT NULL,
+  Cod_proyecto varchar(9),
   PRIMARY KEY (Numero_documento)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -217,10 +218,10 @@ ALTER TABLE proyecto ADD CONSTRAINT fk_director FOREIGN KEY (Cod_director) REFER
 -- --------------------------------------------------------
 
 --
--- Foraneas a linea de profesor
+-- Foraneas a linea de profesor y foranea de estudiante a proyecto
 --
 
-ALTER TABLE profesor ADD CONSTRAINT fk_linea FOREIGN KEY (Codigo_linea) REFERENCES linea(Codigo);
+ALTER TABLE profesor ADD CONSTRAINT fk_linea FOREIGN KEY (Cod_linea) REFERENCES linea(Codigo);
 
 -- --------------------------------------------------------
 --
@@ -232,3 +233,14 @@ ALTER TABLE profesor ADD CONSTRAINT fk_linea FOREIGN KEY (Codigo_linea) REFERENC
   ALTER TABLE direccion ADD CONSTRAINT fk_direccion    FOREIGN KEY (Codigo) REFERENCES persona(Numero_documento);
 
 
+INSERT INTO programa VALUES ('1','Adminisracion');
+INSERT INTO programa VALUES ('2','Contaduria');
+INSERT INTO programa VALUES ('3','Sistemas');
+INSERT INTO programa VALUES ('4','Electronica');
+INSERT INTO programa VALUES ('5','Lic. EduFis');
+
+
+INSERT INTO linea VALUES ('1','Linea 1','Descripcion 1');
+INSERT INTO linea VALUES ('2','Linea 2','Descripcion 2');
+INSERT INTO linea VALUES ('3','Linea 3','Descripcion 3');
+INSERT INTO linea VALUES ('4','Linea 4','Descripcion 4');

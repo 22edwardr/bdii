@@ -11,36 +11,6 @@
 <script type="text/javascript" src="js/cufon-replace.js"></script>  
 <script type="text/javascript" src="js/Forum_400.font.js"></script>
 <script type="text/javascript" src="js/atooltip.jquery.js"></script> 
-	
-<script>
-	jQuery.fn.generaNuevosCampos = function(etiqueta, nombreCampo, indice){
-		$(this).each(function(){
-			elem = $(this);
-			elem.data("etiqueta",etiqueta);
-			elem.data("nombreCampo",nombreCampo);
-			elem.data("indice",indice);
-			
-			elem.click(function(e){
-				e.preventDefault();
-				elem = $(this);
-				etiqueta = elem.data("etiqueta");
-				nombreCampo = elem.data("nombreCampo");
-				indice = elem.data("indice");
-				texto_insertar = '<tr><td>' + etiqueta + ' ' + indice + ':<br></td><td><input type="text" name="' + nombreCampo + indice + '" </td></tr>';
-				indice ++;
-				elem.data("indice",indice);
-				nuevo_campo = $(texto_insertar);
-				elem.before(nuevo_campo);
-			});
-		});
-		return this;
-	}
-	$(document).ready(function(){
-		$("#mastel").generaNuevosCampos("Telefono", "tel", 1);
-		$("#masdir").generaNuevosCampos("Direccion", "dir", 1);
-		$("#masmail").generaNuevosCampos("Email", "mail", 1);
-		});
-	</script>
 </head>
 
 
@@ -70,12 +40,12 @@
 					</ul>
 				</nav>
 			</header>
-			<form method="POST" action= "Registrar_estudiante.php">
+			<form method="POST" action= "Registrar_proyecto.php">
 			<div id="campos">
 			<center><table id="formul"></center>
 			<tbody>
 		<TR class="campos">
-			<TH COLSPAN="2"><br>Ingrese los datos del estudiante a registrar</TH>
+			<TH COLSPAN="2"><br>Ingrese los datos del proyecto a registrar</TH>
 		</TR>
 		<TR>
 			<TD><br>Codigo *</H2></TD>
@@ -83,78 +53,58 @@
 		</TR>
 		<TR>
 		<TR>
-			<TD>Nombre 1 *<br></TD><br>
-			<TD><input type="text" name="Nombre1" value="" size="20" maxlength="20" required></TD>
+			<TD>Titulo *<br></TD><br>
+			<TD><input type="text" name="Titulo" value="" size="20" maxlength="20" required></TD>
 		</TR>
 		<TR>
-			<TD>Nombre 2<br></TD><br>
-			<TD><input type="text" name="Nombre2" value="" size="20" maxlength="20"></TD>
+			<TD>Descripcion *<br></TD><br>
+			<TD><input type="textarea" name="Descripcion" value=""  rows="50" cols="40" required></TD>
 		</TR>
 		<TR>
-			<TD>Apellido 1 *<br></TD>
-			<TD><input type="text" name="Apellido1" value="" size="20" maxlength="20" required></TD>
+			<TD>Fecha *<br></TD><br>
+			<TD><input type="date" name="Fecha" ></TD>
 		</TR>
 		<TR>
-			<TD>Apellido 2<br></TD>
-			<TD><input type="text" name="Apellido2" value="" size="20" maxlength="20"></TD>
-		</TR>
-		<TR>
-			<TD>Tipo de documento *<br></TD>
-			<TD><select name="Tipo_documento" required>
-					<option value="CC" checked>
-						Cedula de ciudadania
-					</option>	
-					<option value="TI">
-						Tarjeta de identidad
-					</option>
-				</select>	
-			</TD>
-		</TR>
-		<TR>
-			<TD>Numero de documento *<br></TD>
-			<TD><input type="text" name="Numero_documento" value="" size="20" maxlength="15" required></TD>
-		</TR>
-		<TR>
-			<TD>Telefono *<br></TD>
-			<TD><input type="text" name="tel0" value="" size="20" maxlength="10" required></TD>
-		</TR>
-		<TR>
-			<TD><a href="#" id="mastel">Mas telefonos</a><br></TD>
-		</TR>
-
-
-
-		<TR>
-			<TD>Direccion de residencia *<br></TD>
-			<TD><input type="text" name="dir0" value="" size="20" maxlength="10" required></TD>
-		</TR>
-
-		<TR>
-			<TD><a href="#" id="masdir">Mas Direcciones</a><br></TD>
-		</TR>
-
-		<TR>
-			<TD>Email *<br></TD>
-			<TD><input type="text" name="mail0" value="" size="20" maxlength="10" required></TD>
-		</TR>
-		<TR>
-			<TD><a href="#" id="masmail">Mas Emails</a><br></TD>
-		</TR>
-
-		<TR>
-			<TD>Semestre<br></TD>
-			<TD><input type="text" name="Semestre" value="" size="20" maxlength="9" required></TD>
-		</TR>
-
-
-
-		<TR>
-			<TD>Semestre *<br></TD>
-			<TD><select name="Carrera" required>
-			<?php	
+			<TD>Programa *<br></TD>
+			<TD><select name="Programa" required>
+				<?php	
 				include 'bd.php';
 				$conexion= new bd;
 				$sql="SELECT * FROM programa";
+				$result=$conexion->comandosql($sql);
+				while($row = mysql_fetch_row($result)){
+					?><option value="<?php echo $row[0]; ?>">
+						<?php echo $row[1]; ?>
+					</option>
+				<?php 
+					}
+				?>
+					</option>
+				</select>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD>Estado *<br></TD>
+			<TD><select name="Estado" required>
+					<option value="Aprobado" selected>
+						Aprobado
+					</option>
+					<option value="Aplazado">
+						Aplazado
+					</option>
+					<option value="No aprobado">
+						No aprobado
+					</option>
+				</select>
+			</TD>
+		</TR>
+
+		<TR>
+			<TD>Linea *<br></TD>
+			<TD><select name="Linea" required>
+			<?php	
+				$sql="SELECT * FROM linea";
 				$result=$conexion->comandosql($sql);
 				while($row = mysql_fetch_row($result)){
 					?><option value="<?php echo $row[0]; ?>">
@@ -167,8 +117,26 @@
 			</TD>
 		</TR>
 
+		<TR>
+			<TD>Director *<br></TD>
+			<TD><select name="Director" required>
+			<?php
+				$sql="SELECT profesor.Numero_documento,Nombre1,Apellido1 FROM persona,profesor WHERE persona.Numero_documento=profesor.Numero_documento AND Tipo!='Jurado'";
+				$result=$conexion->comandosql($sql);
+				while($row = mysql_fetch_row($result)){
+					?><option value="<?php echo $row[0]; ?>">
+						<?php echo $row[1]." ".$row[2]; ?>
+					</option>
+				<?php 
+					}
+				?>
+				</select>	
+			</TD>
+		</TR>
 
+		
 
+		
 
 
 		<TR>
