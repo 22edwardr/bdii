@@ -222,6 +222,7 @@ ALTER TABLE proyecto ADD CONSTRAINT fk_director FOREIGN KEY (Cod_director) REFER
 --
 
 ALTER TABLE profesor ADD CONSTRAINT fk_linea FOREIGN KEY (Cod_linea) REFERENCES linea(Codigo);
+ALTER TABLE estudiante ADD CONSTRAINT fk_proyecto FOREIGN KEY ( Cod_proyecto ) REFERENCES proyecto( Codigo )
 
 -- --------------------------------------------------------
 --

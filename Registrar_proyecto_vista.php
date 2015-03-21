@@ -10,7 +10,35 @@
 <script type="text/javascript" src="js/cufon-yui.js"></script>
 <script type="text/javascript" src="js/cufon-replace.js"></script>  
 <script type="text/javascript" src="js/Forum_400.font.js"></script>
-<script type="text/javascript" src="js/atooltip.jquery.js"></script> 
+<script type="text/javascript" src="js/atooltip.jquery.js"></script>
+<script>
+	jQuery.fn.generaNuevosCampos = function(etiqueta, nombreCampo, indice){
+		$(this).each(function(){
+			elem = $(this);
+			elem.data("etiqueta",etiqueta);
+			elem.data("nombreCampo",nombreCampo);
+			elem.data("indice",indice);
+			
+			elem.click(function(e){
+				e.preventDefault();
+				elem = $(this);
+				etiqueta = elem.data("etiqueta");
+				nombreCampo = elem.data("nombreCampo");
+				indice = elem.data("indice");
+				texto_insertar = '<tr><td>' + etiqueta + ' ' + indice + ':<br></td><td><input type="text" name="' + nombreCampo + indice + '" </td></tr>';
+				indice ++;
+				elem.data("indice",indice);
+				nuevo_campo = $(texto_insertar);
+				elem.before(nuevo_campo);
+			});
+		});
+		return this;
+	}
+	$(document).ready(function(){
+		$("#masest").generaNuevosCampos("Estudiante", "est", 1);
+		});
+	</script>
+
 </head>
 
 
@@ -51,7 +79,14 @@
 			<TD><br>Codigo *</H2></TD>
 			<TD><br><input type="text" name="Codigo" value="" size="20" maxlength="9" required></TD>
 		</TR>
+
 		<TR>
+			<TD>Estudiante *<br></TD>
+			<TD><input type="text" name="est0" value="" size="20" maxlength="10" required></TD>
+		</TR>
+		<TR>
+			<TD><a href="#" id="masest">Mas estudiantes</a><br></TD>
+		</TR>
 		<TR>
 			<TD>Titulo *<br></TD><br>
 			<TD><input type="text" name="Titulo" value="" size="20" maxlength="20" required></TD>
